@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spa - Empleados</title>
+  <link rel="stylesheet" href="../css/body.css">
+  <link rel="stylesheet" href="../css/empleados.css">
+  <link rel="stylesheet" href="../css/formVentana.css">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div id="body-container">
+    <div id="table-container">
+      <button id="btn-agregar">Agregar</button>
+      <h1>Empleados del Spa</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Puesto</th>
+            <th>Teléfono</th>
+            <th>Disponibilidad</th>
+            <th>Jornada</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="empleados-body">
+          <!-- Se llenan desde JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Agregar Empleado</h2>
+      <form id="formEmpleado">
+        <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+        <input class="form-input" type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+        <input class="form-input" type="text" id="puesto" name="puesto" placeholder="Puesto" required>
+        <input class="form-input" type="text" id="telefono" name="telefono" placeholder="Teléfono" required>
+        <input class="form-input" type="text" id="horario" name="horario" placeholder="Horario" required>
+        <input class="form-input" type="text" id="jornada" name="jornada" placeholder="Jornada" required>
+        <select class="form-input" id="status" name="status" required>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <input class="form-input" type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+        <input class="form-input" type="password" id="pass" name="pass" placeholder="Contraseña" required>
+        <button class="form-btn" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+    <script src="../js/implementHtml.js"></script>
+  <script src="../js/formVentana.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spa - Citas</title>
+  <link rel="stylesheet" href="../css/body.css">
+  <link rel="stylesheet" href="../css/empleados.css">
+  <link rel="stylesheet" href="../css/formVentana.css">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div id="body-container">
+    <div id="table-container">
+      <button id="btn-agregar">Agregar</button>
+      <h1>Citas Programadas</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Contacto del cliente</th>
+            <th>Masajista asignado</th>
+            <th>Paquete Seleccionado</th>
+            <th>Hora de cita</th>
+            <th>Fecha</th>
+            <th>Status de cita</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="citas-body">
+          <!-- Se llenan desde JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Agregar Cita</h2>
+      <form id="formCita">
+        <input type="text" id="cliente" name="cliente" class="form-input" placeholder="Nombre del Cliente" required>
+        <input type="text" id="contacto" name="contacto" class="form-input" placeholder="Teléfono o Email" required>
+        <input type="text" id="masajista" name="masajista" class="form-input" placeholder="Masajista asignado" required>
+        <input type="text" id="paquete" name="paquete" class="form-input" placeholder="Paquete seleccionado" required>
+        <input type="time" id="hora" name="hora" class="form-input" placeholder="Hora de cita" required>
+        <input type="date" id="fecha" name="fecha" class="form-input" placeholder="Fecha de cita" required>
+        <select id="status" name="status" class="form-input" required>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Confirmada">Confirmada</option>
+          <option value="Cancelada">Cancelada</option>
+        </select>
+        <button type="submit" class="form-btn">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/citas.js"></script>
+  <script src="../js/implementHtml.js"></script>
+</body>
+</html>

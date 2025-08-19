@@ -1,0 +1,11 @@
+
+#presentation-container {
+    width: 50%;
+    height: max-content;
+    margin-top: 300px; 
+    margin-left: 25px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

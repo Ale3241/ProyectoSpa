@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spa - Paquetes</title>
+  <link rel="stylesheet" href="../css/body.css">
+  <link rel="stylesheet" href="../css/empleados.css">
+  <link rel="stylesheet" href="../css/formVentana.css">
+  <link rel="stylesheet" href="../css/paquete.css">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div id="body-container">
+    <div id="table-container">
+      <button id="btn-agregar">Agregar</button>
+      <h1>Paquetes del Spa</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nombre del Paquete</th>
+            <th>Descripción</th>
+            <th>Duración</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="paquetes-body">
+          <!-- Se llenan desde JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Agregar Paquete</h2>
+      <form id="formPaquete">
+        <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Nombre del Paquete" required>
+        <input type="text" id="descripcion" name="descripcion" class="form-input" placeholder="Descripción" required>
+        <input type="text" id="duracion" name="duracion" class="form-input" placeholder="Duración (ej: 1hr 30min)" required>
+        <button type="submit" class="form-btn">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/paquetes.js"></script>
+  <script src="../js/implementHtml.js"></script>
+</body>
+</html>
