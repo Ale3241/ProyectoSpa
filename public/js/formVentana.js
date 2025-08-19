@@ -4,16 +4,16 @@ const closeBtn = document.querySelector(".close");
 const form = document.getElementById("formEmpleado");
 const tbody = document.getElementById("empleados-body");
 
-let editarId = null; // Para saber si estamos editando
+let editarId = null;
 
-// Abrir modal
+// Abrir 
 btnAgregar.onclick = () => {
   modal.style.display = "block";
   editarId = null;
   form.reset();
 };
 
-// Cerrar modal
+// Cerrar 
 closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; };
 function cerrarModal() { modal.style.display = "none"; }
@@ -43,7 +43,6 @@ async function cargarEmpleados() {
   }
 }
 
-// Submit del formulario
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(form).entries());
@@ -77,7 +76,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Delegación de eventos para Editar y Eliminar
+
 tbody.addEventListener("click", async (e) => {
   const id = e.target.dataset.id;
 
@@ -106,10 +105,10 @@ tbody.addEventListener("click", async (e) => {
     form.horario.value = columnas[5].textContent;
     form.jornada.value = columnas[6].textContent;
 
-    editarId = id; // Guardamos el ID para editar
+    editarId = id; 
     modal.style.display = "block";
   }
 });
 
-// Inicializar tabla al cargar la página
+
 document.addEventListener("DOMContentLoaded", () => cargarEmpleados());

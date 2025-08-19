@@ -6,11 +6,9 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const errorMsg = document.getElementById("error-message");
 
     try {
-        // Traemos todos los empleados
         const res = await fetch("http://127.0.0.1:3000/api/empleados");
         const empleados = await res.json();
 
-        // Buscamos el recepcionista con el usuario y contraseña correctos
         const recepcionista = empleados.find(emp =>
             emp.usuario === username &&
             emp.pass === password &&
@@ -18,7 +16,6 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         );
 
         if (recepcionista) {
-            // Redirige si todo coincide
             window.location.href = "inicio.html";
         } else {
             errorMsg.textContent = "Usuario o contraseña incorrectos, o no es recepcionista";

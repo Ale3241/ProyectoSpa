@@ -4,16 +4,16 @@ const closeBtn = document.querySelector(".close");
 const form = document.getElementById("formCita");
 const tbody = document.getElementById("citas-body");
 
-let editarId = null; // Para saber si estamos editando
+let editarId = null; 
 
-// Abrir modal
+// Abrir 
 btnAgregar.onclick = () => {
   modal.style.display = "block";
   editarId = null;
   form.reset();
 };
 
-// Cerrar modal
+// Cerrar 
 closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; };
 function cerrarModal() { modal.style.display = "none"; }
@@ -44,7 +44,6 @@ async function cargarCitas() {
   }
 }
 
-// Submit del formulario
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(form).entries());
@@ -52,14 +51,14 @@ form.addEventListener("submit", async (e) => {
   try {
     let res;
     if (editarId) {
-      // Editar cita
+      // Editar
       res = await fetch(`http://127.0.0.1:3000/api/citas/${editarId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
       });
     } else {
-      // Agregar cita
+      // Agregar 
       res = await fetch("http://127.0.0.1:3000/api/citas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,7 +77,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Delegación de eventos para Editar y Eliminar
 tbody.addEventListener("click", async (e) => {
   const id = e.target.dataset.id;
 
@@ -113,5 +111,4 @@ tbody.addEventListener("click", async (e) => {
   }
 });
 
-// Inicializar tabla al cargar la página
 document.addEventListener("DOMContentLoaded", () => cargarCitas());

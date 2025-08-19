@@ -6,23 +6,21 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 
 // Conexión a la BD
 const dbPath = path.join(__dirname, "sql", "Spa.db");
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   if (err) console.error("Error al conectar a la BD:", err.message);
-  else console.log("Conectado a Spa.db ✅");
+  else console.log("Conectado a Spa.db");
 });
 
-/* =====================
-   EMPLEADOS
-===================== */
+
+  //----------------------------------------------------------------- EMPLEADOS
+
 
 // POST – Agregar empleado
 app.post("/api/empleados", (req, res) => {
@@ -34,7 +32,7 @@ app.post("/api/empleados", (req, res) => {
   const sql = `INSERT INTO empleados (nombre, apellido, puesto, telefono, horario, jornada, status, usuario, pass) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
   db.run(sql, [nombre, apellido, puesto, telefono, horario, jornada, statusDB, usuario, pass], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Empleado agregado con éxito ✅", id: this.lastID });
+    res.json({ message: "Empleado agregado con éxito", id: this.lastID });
   });
 });
 
@@ -59,7 +57,7 @@ app.put("/api/empleados/:id", (req, res) => {
   `;
   db.run(sql, [nombre, apellido, puesto, telefono, horario, jornada, statusDB, usuario, pass, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Empleado actualizado ✅" });
+    res.json({ message: "Empleado actualizado" });
   });
 });
 
@@ -68,13 +66,13 @@ app.delete("/api/empleados/:id", (req, res) => {
   const { id } = req.params;
   db.run(`DELETE FROM empleados WHERE id=?`, [id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Empleado eliminado ✅" });
+    res.json({ message: "Empleado eliminado" });
   });
 });
 
-/* =====================
-   CITAS
-===================== */
+
+//------------------------------------------------- CITAS
+
 
 // POST – Agregar cita
 app.post("/api/citas", (req, res) => {
@@ -85,7 +83,7 @@ app.post("/api/citas", (req, res) => {
   const sql = `INSERT INTO citas (cliente, contacto, masajista, paquete, hora, fecha, status) VALUES (?, ?, ?, ?, ?, ?, ?)`;
   db.run(sql, [cliente, contacto, masajista, paquete, hora, fecha, status], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Cita agregada con éxito ✅", id: this.lastID });
+    res.json({ message: "Cita agregada con éxito", id: this.lastID });
   });
 });
 
@@ -108,7 +106,7 @@ app.put("/api/citas/:id", (req, res) => {
   `;
   db.run(sql, [cliente, contacto, masajista, paquete, hora, fecha, status, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Cita actualizada ✅" });
+    res.json({ message: "Cita actualizada" });
   });
 });
 
@@ -117,13 +115,12 @@ app.delete("/api/citas/:id", (req, res) => {
   const { id } = req.params;
   db.run(`DELETE FROM citas WHERE id=?`, [id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Cita cancelada ✅" });
+    res.json({ message: "Cita cancelada" });
   });
 });
 
-/* =====================
-   PAQUETES
-===================== */
+
+   //------------------------PAQUETES
 
 // POST – Agregar paquete
 app.post("/api/paquetes", (req, res) => {
@@ -132,7 +129,7 @@ app.post("/api/paquetes", (req, res) => {
 
   db.run(`INSERT INTO paquetes (nombre, descripcion, duracion) VALUES (?, ?, ?)`, [nombre, descripcion, duracion], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Paquete agregado con éxito ✅", id: this.lastID });
+    res.json({ message: "Paquete agregado con éxito", id: this.lastID });
   });
 });
 
@@ -151,7 +148,7 @@ app.put("/api/paquetes/:id", (req, res) => {
   const sql = `UPDATE paquetes SET nombre=?, descripcion=?, duracion=? WHERE id=?`;
   db.run(sql, [nombre, descripcion, duracion, id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Paquete actualizado ✅" });
+    res.json({ message: "Paquete actualizado" });
   });
 });
 
@@ -160,13 +157,12 @@ app.delete("/api/paquetes/:id", (req, res) => {
   const { id } = req.params;
   db.run(`DELETE FROM paquetes WHERE id=?`, [id], function(err) {
     if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "Paquete eliminado ✅" });
+    res.json({ message: "Paquete eliminado" });
   });
 });
 
-/* =====================
-   LEVANTAR SERVIDOR
-===================== */
+
+//------------------------ INICIO DEL SERVIDOR
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://127.0.0.1:${PORT}`);
 });

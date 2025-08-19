@@ -4,9 +4,9 @@ const closeBtn = document.querySelector(".close");
 const form = document.getElementById("formPaquete");
 const tbody = document.getElementById("paquetes-body");
 
-let editId = null; // Para saber si estamos editando
+let editId = null; 
 
-// Abrir modal
+// Abrir
 btnAgregar.onclick = () => {
   editId = null;
   form.reset();
@@ -14,7 +14,7 @@ btnAgregar.onclick = () => {
   document.querySelector(".modal-content h2").textContent = "Agregar Paquete";
 };
 
-// Cerrar modal
+// Cerrar 
 closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 function cerrarModal() { modal.style.display = "none"; }
@@ -37,7 +37,7 @@ async function cargarPaquetes() {
       </tr>
     `).join("");
 
-    // Agregar listeners a los botones después de renderizar
+
     document.querySelectorAll(".editar").forEach(btn => {
       btn.onclick = () => editarPaquete(btn.dataset.id);
     });
@@ -50,7 +50,7 @@ async function cargarPaquetes() {
   }
 }
 
-// Agregar o actualizar paquete
+// Agregar o actualizar
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(form).entries());
@@ -84,7 +84,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Función para editar
 async function editarPaquete(id) {
   try {
     const res = await fetch(`http://127.0.0.1:3000/api/paquetes`);
@@ -92,7 +91,6 @@ async function editarPaquete(id) {
     const paquete = paquetes.find(p => p.id == id);
     if (!paquete) return alert("Paquete no encontrado");
 
-    // Llenar el formulario con los datos
     form.nombre.value = paquete.nombre;
     form.descripcion.value = paquete.descripcion;
     form.duracion.value = paquete.duracion;
@@ -105,7 +103,7 @@ async function editarPaquete(id) {
   }
 }
 
-// Función para eliminar
+// Eliminar
 async function eliminarPaquete(id) {
   if (!confirm("¿Deseas eliminar este paquete?")) return;
   try {
@@ -118,5 +116,4 @@ async function eliminarPaquete(id) {
   }
 }
 
-// Inicializar tabla al cargar la página
 document.addEventListener("DOMContentLoaded", () => cargarPaquetes());
